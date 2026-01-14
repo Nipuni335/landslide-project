@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const postRoutes = require("./routes/postRoutes");
 
+
 dotenv.config();
 
 const app = express();
