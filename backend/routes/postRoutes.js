@@ -10,15 +10,15 @@ const {
 } = require("../controllers/postController");
 
 // GET all posts
-router.get("/posts", getPosts);
+router.get("/", getPosts);
 
 // CREATE post
-router.post("/posts", createPost);
+router.post("/", createPost);
 
 // GET post by ID
-router.get("/posts/:id", getPostById);
+router.get("/:id", getPostById);
 
 // DELETE post by ID
-router.delete("/posts/:id", deletePost);
+router.delete("/:id", deletePost);
 
 module.exports = router;

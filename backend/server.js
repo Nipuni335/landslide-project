@@ -3,6 +3,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const postRoutes = require("./routes/postRoutes");
+const newsRoutes = require("./routes/newsRoutes");
+const alertRoutes = require("./routes/alertRoutes");
+const emergencyRoutes = require("./routes/emergencyRoutes");
 
 
 dotenv.config();
@@ -18,9 +21,13 @@ connectDB();
 
 // Routes
 app.use("/api/posts", postRoutes);
+app.use("/api/news", newsRoutes);
+app.use("/api/alerts", alertRoutes);
+app.use("/api/emergency", emergencyRoutes);
+
 
 // Test route
-app.get("/", (req, res) => {
+app.get("/posts", (req, res) => {
   res.send("API is running...");
 });
 
