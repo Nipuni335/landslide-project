@@ -1,8 +1,18 @@
 const express = require("express");
-const router = express.Router();
-const { getNews } = require("../controllers/newsController");
+const {
+  getAllNews,
+  getSingleNews,
+  createNews,
+} = require("../controllers/newsController");
 
-// GET all news
-router.get("/", getNews);
+const authMiddleware = require("../middleware/authMiddleware");
+
+const router = express.Router();
+
+router.get("/", getAllNews);
+router.get("/:id", getSingleNews);
+
+// 🔒 Admin only
+router.post("/", authMiddleware, createNews);
 
 module.exports = router;

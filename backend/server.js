@@ -9,6 +9,7 @@ const newsRoutes = require("./routes/newsRoutes");
 const alertRoutes = require("./routes/alertRoutes");
 const emergencyRoutes = require("./routes/emergencyRoutes");
 const historyRoutes = require("./routes/historyRoutes"); // Add history route
+const adminRoutes = require("./routes/adminRoutes");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/api/news", newsRoutes);          // Latest news
 app.use("/api/alerts", alertRoutes);       // Risk alerts
 app.use("/api/emergency", emergencyRoutes); // Emergency notifications
 app.use("/api/history", historyRoutes);    // Alert history
+app.use("/api/admin", adminRoutes);
 
 // Root test route
 app.get("/", (req, res) => {
