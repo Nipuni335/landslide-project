@@ -4,6 +4,7 @@ import "./globals.css";           // Tailwind CSS and global styles
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+
 export const metadata = {
   title: "Landslide Blog",
   description: "Landslide awareness and reports",
