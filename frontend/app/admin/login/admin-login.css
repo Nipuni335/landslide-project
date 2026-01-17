@@ -1,0 +1,97 @@
+/* Background */
+.login-bg {
+  min-height: 100vh;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.login-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Subtitle */
+.login-subtitle {
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 30px;
+  color: #6b7280;
+}
+
+/* Labels */
+.login-card label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Inputs */
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #eff6ff;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #facc15;
+}
+
+/* Remember & forgot */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.forgot {
+  color: #f59e0b;
+  cursor: pointer;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #facc15, #000000);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
