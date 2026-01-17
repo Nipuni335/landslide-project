@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import "./admin-login.css";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -37,33 +38,30 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="admin-login-bg">
-      <div className="admin-login-card">
-        <div className="text-center mb-8">
-          <h1 className="admin-login-heading">Admin Login</h1>
-          <p className="admin-login-subheading">Sign in to manage your dashboard</p>
-        </div>
+    <div className="login-bg">
+      <div className="login-card">
+        <h1 className="login-title">Admin Login</h1>
+        <p className="login-subtitle">Sign in to manage your dashboard</p>
 
-        <form onSubmit={handleLogin} className="admin-login-form">
+        <form onSubmit={handleLogin}>
+          <label>Username</label>
           <input
             type="text"
             placeholder="Username"
-            className="admin-login-input"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <label>Password</label>
           <input
             type="password"
             placeholder="Password"
-            className="admin-login-input"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="submit"
-            className="admin-login-btn"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
