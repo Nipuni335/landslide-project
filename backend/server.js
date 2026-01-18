@@ -14,8 +14,7 @@ const adminRoutes = require("./routes/adminRoutes");
 dotenv.config();
 
 const app = express();
-
-// Middleware
+page.js// Middleware
 app.use(cors());
 app.use(express.json());
 

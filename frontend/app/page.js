@@ -1,7 +1,12 @@
 import Link from "next/link";
+import { useNews } from "../context/NewsContext";
 
 export default async function LatestNewsPage() {
   let posts = [];
+
+  // ✅ Add frontend context fallback
+  const { newsList } = useNews?.() || {}; 
+  if (newsList && newsList.length > 0) posts = newsList;
 
   try {
     const res = await fetch("http://localhost:5000/api/posts", {
