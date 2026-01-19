@@ -1,46 +1,53 @@
+"use client"; // Important! This makes it a client-side component
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default async function LatestNewsPage() {
-  let news = [];
+export default function LatestNewsPage() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  try {
-    const res = await fetch("http://localhost:5000/api/news", {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("Server response:", text);
-      throw new Error("Failed to fetch news");
-    }
-    news = await res.json();
-  } catch (error) {
-    console.error("Error fetching news:", error);
-  }
+  useEffect(() => {
+    // Fetch from the backend
+    fetch("http://localhost:5000/api/news") // <-- make sure this matches your backend route
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching posts:", err);
+        setError("Failed to fetch news. Make sure your backend is running.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="text-gray-600">Loading news...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="max-w-5xl mx-auto py-8 px-4">
+    <div className="max-w-4xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6">Latest Landslide News</h1>
 
-      {news.length === 0 ? (
+      {posts.length === 0 ? (
         <p className="text-gray-600">No news available at the moment.</p>
       ) : (
-        news.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-lg p-4 mb-4 hover:shadow-md transition cursor-pointer"
-          >
-            <h3 className="text-xl font-semibold">{item.title}</h3>
-            <p className="text-gray-600 mt-1">{item.description}</p>
-            <p className="text-gray-400 text-sm mt-1">
-              {item.date} | Source: {item.source}
-            </p>
-            <Link
-              href={`/news/${item.id}`}
-              className="text-blue-500 hover:underline mt-2 block"
-            >
-              Read more
-            </Link>
-          </div>
+        posts.map((post) => (
+          <Link key={post.id} href={`/blog/${post.id}`}>
+            <div className="border rounded-lg p-4 mb-4 hover:shadow-md cursor-pointer transition duration-200">
+              <h3 className="text-xl font-semibold">{post.title}</h3>
+              <p className="text-gray-600 mt-1">
+                {post.description?.substring(0, 120) || "No description"}...
+              </p>
+              <p className="text-gray-400 text-sm mt-1">
+                {post.date || "Date not available"} | Source: {post.source || "Unknown"}
+              </p>
+            </div>
+          </Link>
         ))
       )}
     </div>

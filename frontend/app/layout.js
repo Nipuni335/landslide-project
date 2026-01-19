@@ -4,8 +4,7 @@ import "./globals.css";           // Tailwind CSS and global styles
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./globals.css";
-
-
+import { NewsProvider } from "../context/NewsContext";
 
 export const metadata = {
   title: "Landslide Blog",
@@ -16,14 +15,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen bg-gray-100">
-        {/* Navigation Bar */}
-        <Navbar />
+        <NewsProvider> {/* <-- Wrap the app with NewsProvider */}
 
-        {/* Main Content */}
-        <main className="flex-grow p-6">{children}</main>
+          {/* Navigation Bar */}
+          <Navbar />
 
-        {/* Footer */}
-        <Footer />
+          {/* Main Content */}
+          <main className="flex-grow p-6">{children}</main>
+
+          {/* Footer */}
+          <Footer />
+
+        </NewsProvider>
       </body>
     </html>
   );
